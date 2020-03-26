@@ -32,10 +32,14 @@ A fisheye 180 degree image . To simulate car rear view of six view angle scenes 
 main.cpp
 -----------------------------------------------------------------------------------------------------------------------------
 4.API Reference
-    4.1 Fisheye parameter Config : 
-    Create a md object and feed the fisheye calibrated parameters . (the parameters is for dedicated fisheye )
-   md->Config("car", 1.4, 1.4,
-        1320.0, 1017.0, 1.048,
-        2592, 1944, 4.05,
-        0, 0, 0, 0, -47.96, 222.86
-        );
+    4.1 MAP_CACHE_ENABLED is a definition to decide if you want to generate cache files for the XY maps.Enable this will imporve the display efficiency. 
+    4.2 Fisheye parameter Config : 
+        Create a md object and feed the fisheye calibrated parameters . 
+        md->Config("car", 1.4, 1.4,1320.0, 1017.0, 1.048, 2592, 1944, 4.05, 0, 0, 0, 0, -47.96, 222.86 );
+    4.3 mapX[] and mapY[] and opencv XY map for the six view output.
+    4.4 md->AnyPointM((float *)inputXmap, (float *)inputYmap, (int)cols, (int)rows, alpha, beta, zoom , m_ratio); // front view
+    The function is to generate the XY mapping between original image and output image. 
+        1. the 1st and 2nd argument are XY mapping 
+        2. the 3rd and 4th is the XY mapping's row and colume.
+        3. alpha , beta , zoom is the required view angel , please also refer above view angle paragraph and sample code's input. 
+        4. m_ratio will dynamically calculated by the sample code.
