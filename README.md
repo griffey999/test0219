@@ -8,16 +8,16 @@ One of MOIL's core technology is to calibrate a fisheye lens no matter the fishe
 1. Development environment
    If you already have Opencv installed, the following steps can be skipped. Opencv version 3.2.0 is    recommented, it's the default version on both Ubuntu 18.04 and Raspbian Buster.
 ```
-   sudo apt update
-   sudo apt upgrade
-   sudo apt install build-essential cmake pkg-config
-   sudo apt install libjpeg-dev libpng-dev libtiff-de
-   sudo apt install software-properties-common
-   sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
-   sudo apt install libjasper1 libjasper-dev
-   sudo apt install libgtk-3-dev
-   sudo apt install libatlas-base-dev gfortran
-   sudo apt install libopencv-dev python-opencv
+sudo apt update
+sudo apt upgrade
+sudo apt install build-essential cmake pkg-config
+sudo apt install libjpeg-dev libpng-dev libtiff-de
+sudo apt install software-properties-common
+sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
+sudo apt install libjasper1 libjasper-dev
+sudo apt install libgtk-3-dev
+sudo apt install libatlas-base-dev gfortran
+sudo apt install libopencv-dev python-opencv
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -31,13 +31,13 @@ One of MOIL's core technology is to calibrate a fisheye lens no matter the fishe
 
 3. Sample Image (image.jpg)
 ```
-   A fisheye 180 degree image . To simulate car rear view and accordingly to output six view angle scenes .
+A fisheye 180 degree image . To simulate car rear view and accordingly to output six view angle scenes .
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
 4. Sample code 
 ```
-   main.cpp
+main.cpp
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
