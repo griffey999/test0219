@@ -12,18 +12,15 @@ One of MOIL's core technology is to calibrate a fisheye lens no matter the fishe
    sudo apt upgrade
    sudo apt install build-essential cmake pkg-config
    sudo apt install libjpeg-dev libpng-dev libtiff-de
-```
-   
-   v
    sudo apt install software-properties-common
    sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
-   sudo apt update
    sudo apt install libjasper1 libjasper-dev
-   sudo apt update
    sudo apt install libgtk-3-dev
    sudo apt install libatlas-base-dev gfortran
    sudo apt install libopencv-dev python-opencv
+```
 -----------------------------------------------------------------------------------------------------------------------------
+
 2. Includes
   "moildev.h"
   moildev.h is head file and inside is the definition of the function calls from moildev.a library.
@@ -32,12 +29,15 @@ One of MOIL's core technology is to calibrate a fisheye lens no matter the fishe
   "configdata.h"
   car6view.h is a standard C++ class definition. 
 -----------------------------------------------------------------------------------------------------------------------------
+
 3. Sample Image (the image is captured with dedicated fisheye. )
    A fisheye 180 degree image . To simulate car rear view and accordingly to output six view angle scenes .
 -----------------------------------------------------------------------------------------------------------------------------
+
 4. Sample code 
    main.cpp
 -----------------------------------------------------------------------------------------------------------------------------
+
 5.API Reference
    5.1 MAP_CACHE_ENABLED is a definition to decide if you want to generate cache files for the XY maps.Enable this will imporve the display efficiency. 
    5.2 Fisheye parameter Config : 
