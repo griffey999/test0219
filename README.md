@@ -8,10 +8,10 @@ One of MOIL's core technology is to calibrate a fisheye lens no matter the fishe
 1. Development environment
    If you already have Opencv installed, the following steps can be skipped. Opencv version 3.2.0 is    recommented, it's the default version on both Ubuntu 18.04 and Raspbian Buster.
 ```
-sudo apt update
+   sudo apt update
 ```
-
    sudo apt upgrade
+```
    sudo apt install build-essential cmake pkg-config
    sudo apt install libjpeg-dev libpng-dev libtiff-dev
    sudo apt install software-properties-common
