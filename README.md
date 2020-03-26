@@ -1,7 +1,7 @@
 MOIL SDK description
 ============================================================================================================================
 MOIL SDK is collection of functions support c++ developments for fisheye image applications, tested both on ubuntu 18.04 and Raspberry Pi( Raspbian Buster ), gcc/g++ and OpenCV are required in the development. Following examples are on ubuntu 18.04 .
-One of MOIL's core technology is to calibrate a fisheye lens no matter the fisheye lens is cheap(Not well-produced) or expensive(Well-produced). After calibrating , MOIL will have a set of fisheye parameters and based on it to implement the fisheye image with the SDK functions. Below demo is with dedicated calibrated  fisheye lens , don't try to change the original image and parameters , it will lead to not perfect or uncertain output. 
+One of MOIL's core technology is to calibrate a fisheye lens no matter the fisheye lens is cheap(Not well-produced) or expensive(Well-produced). After calibrating , MOIL will have a set of fisheye parameters and based on it to implement the fisheye image with the SDK functions. Changing the parameters or image will lead to uncertain output.  
 ![](https://user-images.githubusercontent.com/3524867/73999970-65850480-49a1-11ea-9e0b-6b88d1d49fb7.jpg)
 ![](https://user-images.githubusercontent.com/3524867/74001393-61a7b100-49a6-11ea-96a0-112dbdeb7b05.jpg)
 -----------------------------------------------------------------------------------------------------------------------------
@@ -23,12 +23,9 @@ One of MOIL's core technology is to calibrate a fisheye lens no matter the fishe
 
 2. Includes
 ```
-  "moildev.h"
-  moildev.h is head file and inside is the definition of the function calls from moildev.a library.
-  "configdata.h"
-  config.h is the definition of the calibrated parameters and function calls to access the parameter. 
-  "configdata.h"
-  car6view.h is a standard C++ class definition. 
+  "moildev.h" is the definition of the function calls from moildev.a library.
+  "configdata.h" is the definition of the calibrated parameters and function calls to access the parameter. 
+  "car6view.h" is a standard C++ class definition. 
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
