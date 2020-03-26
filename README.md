@@ -23,9 +23,9 @@ sudo apt install libopencv-dev python-opencv
 
 2. Includes
 ```
-  "moildev.h" is the definition of the function calls from moildev.a library.
-  "configdata.h" is the definition of the calibrated parameters and function calls to access the parameter. 
-  "car6view.h" is a standard C++ class definition. 
+"moildev.h" is the definition of the function calls from moildev.a library.
+"configdata.h" is the definition of the calibrated parameters and function calls to access the parameter. 
+"car6view.h" is a standard C++ class definition. 
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
