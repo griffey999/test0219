@@ -24,7 +24,7 @@ sudo apt install libopencv-dev python-opencv
   "configdata.h"
   config.h is the definition of the calibrated parameters and function calls to access the parameter. 
   "configdata.h"
-  car6view.h is a standard c class definition. 
+  car6view.h is a standard C++ class definition. 
 -----------------------------------------------------------------------------------------------------------------------------
 3. Sample Image (the image is captured with dedicated fisheye. )
 A fisheye 180 degree image . To simulate car rear view and accordingly to output six view angle scenes .
