@@ -44,3 +44,4 @@ main.cpp
         2. the 3rd and 4th is the XY mapping's row and colume.
         3. alpha , beta , zoom is the required view angel , please also refer above view angle paragraph and sample code's input. 
         4. m_ratio will dynamically calculated by the sample code.
+
