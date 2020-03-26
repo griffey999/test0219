@@ -53,7 +53,7 @@ By default, MAP_CACHE_ENABLED is set as true for system performance consideratio
 ```
 md->Config("car", 1.4, 1.4,1320.0, 1017.0, 1.048, 2592, 1944, 4.05, 0, 0, 0, 0, -47.96, 222.86 );
 ```
-This is to create a md object and feed the fisheye calibrated parameters .Each fisheye camera can be calibrated and derives a set of parameters by MOIL laboratory, the configuration is necessary in the beginning of program.
+This is to config the fisheye calibrated parameters at initial stage. Each fisheye camera can be calibrated and derives a set of parameters by MOIL laboratory, the configuration is necessary in the beginning of program.
     
 5.3 AnypointM
 ```
@@ -71,7 +71,7 @@ Parameters :
 . zoom : decimal zoom factor, normally 1..12
 . manification : input image width / calibrationWidth, where calibrationWidth can get by calling getImageWidth(), manification is normally equal to 1. 
 ```
-To generate a pair of X-Y Maps for the specified alpha, beta and zoom parameters, the result X-Y Maps can be used later to remap the original fisheye image to the target angle image. you could also find the sample code in "main.cpp" as below:
+The function is in MOIL SDK. It is to generate a pair of X-Y Maps for the specified alpha, beta and zoom parameters, the result X-Y Maps can be used later to remap the original fisheye image to the target angle image. you could also find the sample code in "main.cpp" as below:
 ```
 md->AnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, 0, 0, 4, m_ratio);       // front view
 ```
