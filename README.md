@@ -25,13 +25,13 @@ sudo apt install libopencv-dev python-opencv
 #include "configdata.h"
   car6view.h is a standard c class definition. 
 -----------------------------------------------------------------------------------------------------------------------------
-3. Sample Image (the image is captured with dedicated fisheye. Different  )
-A fisheye 180 degree image . To simulate car rear view of six view angle scenes .
+3. Sample Image (the image is captured with dedicated fisheye. )
+A fisheye 180 degree image . To simulate car rear view and accordingly to output six view angle scenes .
 -----------------------------------------------------------------------------------------------------------------------------
-3. Sample code 
+4. Sample code 
 main.cpp
 -----------------------------------------------------------------------------------------------------------------------------
-4.API Reference
+5.API Reference
     4.1 MAP_CACHE_ENABLED is a definition to decide if you want to generate cache files for the XY maps.Enable this will imporve the display efficiency. 
     4.2 Fisheye parameter Config : 
         Create a md object and feed the fisheye calibrated parameters . 
