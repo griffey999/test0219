@@ -2,6 +2,7 @@ MOIL SDK description
 ============================================================================================================================
 MOIL SDK is collection of functions support c++ developments for fisheye image applications, tested both on ubuntu 18.04 and Raspberry Pi( Raspbian Buster ), gcc/g++ and OpenCV are required in the development. Following examples are on ubuntu 18.04 .
 One of MOIL's core technology is to calibrate a fisheye lens no matter the fisheye lens is cheap(Not well-produced) or expensive(well-produced). After calibrating , MOIL will have a set of fisheye parameters and based on it to implement the fisheye image with the SDK functions. Below demo is with dedicated calibrated  fisheye lens , don't try to change the original image and parameters , it will lead to not perfect or uncertain output. 
+![](https://user-images.githubusercontent.com/3524867/73999970-65850480-49a1-11ea-9e0b-6b88d1d49fb7.jpg)
 -----------------------------------------------------------------------------------------------------------------------------
 1. Development environment
    If you already have Opencv installed, the following steps can be skipped. Opencv version 3.2.0 is    recommented, it's the default version on both Ubuntu 18.04 and Raspbian Buster.
