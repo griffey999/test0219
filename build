@@ -1,0 +1,7 @@
+#!/bin/bash
+g++ -c main.cpp
+if [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
+g++ -o mainmoil main.cpp `pkg-config --cflags opencv` `pkg-config --libs opencv` 
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+g++ -o mainmoil main.cpp moildev.a `pkg-config --cflags opencv` `pkg-config --libs opencv` 
+fi
