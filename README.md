@@ -70,7 +70,7 @@ Parameters :
 . h : height of the Map (both mapX and mapY)
 . alphaOffset : alpha offset 
 . betaOffset : beta offset
-. zoom : decimal zoom factor, normally 1..12
+. zoom : zoom factor 
 . manification : input image width / calibrationWidth, where calibrationWidth can get by calling getImageWidth(), manification is normally equal to 1. 
 ```
 The function is in MOIL SDK. It is to generate a pair of X-Y Maps for the specified alpha, beta and zoom parameters, the result X-Y Maps can be used later to remap the original fisheye image to the target angle image. you could also find the sample code in "main.cpp" as below:
