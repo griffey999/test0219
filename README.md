@@ -43,7 +43,7 @@ main.cpp
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
-5.API Reference
+5. API Reference
 
 5.1 Disk Cache
 ```
@@ -77,6 +77,7 @@ The function is in MOIL SDK. It is to generate a pair of X-Y Maps for the specif
 ```
 md->AnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, 0, 0, 4, m_ratio);       // front view
 ```
+-----------------------------------------------------------------------------------------------------------------------------
 
 6. Build abd Run
 ```
