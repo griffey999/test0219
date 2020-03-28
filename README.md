@@ -82,7 +82,9 @@ md->AnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0
 6. Build abd Run
 ```
 sudo chmod +x build
+
 ./build
+
 ./mainmoil
 ```
 
