@@ -1,6 +1,5 @@
 #include "moilview.h"
 #define MAP_CACHE_ENABLED true
-#define USE_PICAMERA true
 
 char getch(void);
 int main(int argc, char *argv[])
@@ -26,19 +25,16 @@ int main(int argc, char *argv[])
     {
         case '1':
             Car6view *w;
-            w = new Car6view() ; 
+            w = new Car6view();
             w->Show();  
             delete w ;          
             break;
         case '2':
             Panorama *p;
-            p = new Panorama() ;
+            p = new Panorama();
             p->Show();
             delete p ;
             break;
-        case '3':
-
-            break;            
         case 27:
             exit(1);
             break;
@@ -138,7 +134,7 @@ void Car6view::Show() {
     else {
         md->AnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, 0, 0, 4, m_ratio);       // front view
         md->AnyPointM((float *)mapX[1].data, (float *)mapY[1].data, mapX[1].cols, mapX[1].rows, 70, 270, 4, m_ratio);   // left view, rotate 90
-        md->AnyPointM((float *)mapX[2].data, (float *)mapY[2].data, mapX[2].cols, mapX[2].rows, 60, 90, 4, m_ratio);    // right view, rotate -90
+        md->AnyPointM((float *)mapX[2].data, (float *)mapY[2].data, mapX[2].cols, mapX[2].rows, 70, 90, 4, m_ratio);    // right view, rotate -90
         md->AnyPointM((float *)mapX[3].data, (float *)mapY[3].data, mapX[3].cols, mapX[3].rows, -70, 0, 4, m_ratio);      // Down view ( zoom: 2/4 )
         md->AnyPointM((float *)mapX[4].data, (float *)mapY[4].data, mapX[4].cols, mapX[4].rows, 70, 225, 4, m_ratio);   // left-lower view, rotate 180
         md->AnyPointM((float *)mapX[5].data, (float *)mapY[5].data, mapX[5].cols, mapX[5].rows, 70, 135, 4, m_ratio);   // right-lower view, rotate 180
@@ -154,9 +150,6 @@ void Car6view::Show() {
     while(1){
          c = waitKey( 100 );
          if(c == 27) break;
-         if(c == 'c') {
-            openCamara();
-         }
     }
     cvDestroyWindow("image_input");
     cvDestroyWindow("Front");
@@ -185,55 +178,41 @@ void Car6view::DisplayCh(int ch)
 // original image
     switch (ch) {
         case 0:  // 2 x 3
-        cv::resize(image_input, image_input_s, Size(width_split,height_split-y_base));
-        if(( mediaType == MediaType::CAMERA ) && USE_PICAMERA)
-            cvtColor(image_input_s, image_input_s, CV_BGR2RGB);
-        imshow("image_input", image_input_s);
-        moveWindow("image_input", x_base+width_split, 0+y_base);
+//        cv::resize(image_input, image_input_s, Size(width_split,height_split-y_base));
+//        imshow("image_input", image_input_s);
+//        moveWindow("image_input", x_base+width_split, 0+y_base);
 
         remap(image_input, image_result, mapX[0], mapY[0], INTER_CUBIC, BORDER_CONSTANT, Scalar(0, 0, 0));
         cv::resize(image_result, image_display[0], Size(width_split,height_split-y_base));
-        if(( mediaType == MediaType::CAMERA ) && USE_PICAMERA)
-            cvtColor(image_display[0], image_display[0], CV_BGR2RGB);
         imshow("Front", image_display[0]);
         moveWindow("Front", x_base+width_split, 0+y_base);
 
         remap(image_input, image_resultv, mapX[1], mapY[1], INTER_CUBIC, BORDER_CONSTANT, Scalar(0, 0, 0));
         Rotate(image_resultv, image_result, 90.0);
         cv::resize(image_result, image_display[1], Size(width_split,height_split-y_base));
-        if(( mediaType == MediaType::CAMERA ) && USE_PICAMERA)
-            cvtColor(image_display[1], image_display[1], CV_BGR2RGB);
         imshow("Left", image_display[1]);
         moveWindow("Left", x_base, 0+y_base);
 
         remap(image_input, image_resultv, mapX[2], mapY[2], INTER_CUBIC, BORDER_CONSTANT, Scalar(0, 0, 0));
         Rotate(image_resultv, image_result, -90.0);
         cv::resize(image_result, image_display[2], Size(width_split,height_split-y_base));
-        if(( mediaType == MediaType::CAMERA ) && USE_PICAMERA)
-            cvtColor(image_display[2], image_display[2], CV_BGR2RGB);
         imshow("Right", image_display[2]);
         moveWindow("Right", x_base+width_split*2, 0+y_base);
 
         remap(image_input, image_result, mapX[3], mapY[3], INTER_CUBIC, BORDER_CONSTANT, Scalar(0, 0, 0));
         cv::resize(image_result, image_display[3], Size(width_split,height_split-y_base));
-        if(( mediaType == MediaType::CAMERA ) && USE_PICAMERA)
-            cvtColor(image_display[3], image_display[3], CV_BGR2RGB);
         imshow("Down", image_display[3]);
         moveWindow("Down", x_base+width_split, height_split+y_base);
 
         remap(image_input, image_result, mapX[4], mapY[4], INTER_CUBIC, BORDER_CONSTANT, Scalar(0, 0, 0));
         Rotate(image_result, image_result, 180.0);
         cv::resize(image_result, image_display[4], Size(width_split,height_split-y_base));
-        if(( mediaType == MediaType::CAMERA ) && USE_PICAMERA)
-            cvtColor(image_display[4], image_display[4], CV_BGR2RGB);
         imshow("Lower left", image_display[4]);
         moveWindow("Lower left", x_base, height_split+y_base);
 
         remap(image_input, image_result, mapX[5], mapY[5], INTER_CUBIC, BORDER_CONSTANT, Scalar(0, 0, 0));
         Rotate(image_result, image_result, 180.0);
         cv::resize(image_result, image_display[5], Size(width_split,height_split-y_base));
-        if(( mediaType == MediaType::CAMERA ) && USE_PICAMERA)
-            cvtColor(image_display[5], image_display[5], CV_BGR2RGB);
         imshow("Lower right", image_display[5]);
         moveWindow("Lower right", x_base+width_split*2, height_split+y_base);
         break;
@@ -301,104 +280,6 @@ Mat Car6view::MatRead(const string& filename)
     return mat;
 }
 
-
-void Car6view::camButtonClicked()
-{
-
-}
-
-void Car6view::openCamara()
-{
-    char c;
-    cap0.open(0);
-    cap0.set(CV_CAP_PROP_FRAME_WIDTH,2592);
-    cap0.set(CV_CAP_PROP_FRAME_HEIGHT,1944); 
-
-    if ( cap0.isOpened() ) {   
-        mediaType = MediaType::CAMERA;
-        currCh = 0;
-    for(;;)
-    {
-    // Mat frame;
-    cap0 >> image_input;
-
-    if (( image_input.cols != fix_width ) || ( image_input.rows != fix_height ))
-    cv::resize(image_input, image_input, Size(fix_width, fix_height));
-
-
-          if( image_input.empty() ) break; // end of video stream
-          DisplayCh(currCh);
-          c = waitKey(33);
-          // if (c!=-1) cout << "(" << (int)c << ")";
-          
-          if( c == 27 ) break; // stop capturing by pressing ESC 
-          else if ((c >= '0' ) && (c <='8')) { 
-              currCh = (int)c -int('0');             
-          }
-          else if (((int)c == 82) && (currCh == 2)) { // up
-     if ( currAlpha + currInc <= 90 )
-        currAlpha = currAlpha + currInc ;
-    else
-        currAlpha = 90 ;   
-        md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view      
-          }
-          else if (((int)c == 84) && (currCh == 2)) { // Down
-    if ( currAlpha - currInc >= -90 )
-        currAlpha = currAlpha - currInc ;
-    else
-        currAlpha = -90 ;          
-        md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view      
-          }
-          else if (((int)c == 81) && (currCh == 2)) { // left
-    if( currBeta - currInc >= 0 )
-        currBeta = currBeta - currInc ;
-    else
-        currBeta = ( currBeta - currInc ) + 360 ;          
-        md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view      
-          }
-          else if (((int)c == 83) && (currCh == 2)) { // right
-    currBeta = ( currBeta + currInc ) % 360 ;
-    if (currBeta < 0) currBeta += 360;          
-    md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view      
-          }
-          else if (((int)c == 43) && (currCh == 2)) { // + 
-    currZoom += 1;          
-    if (currZoom > maxZoom) currZoom = maxZoom;              
-    md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view      
-          }          
-          else if (((int)c == 45) && (currCh == 2)) { // - 
-    currZoom -= 1;          
-    if (currZoom < minZoom) currZoom = minZoom;              
-    md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view      
-          }   
-          else if (((c == 'r')||(c == 'R')) && (currCh == 2)) { // R : Reset 
-    currAlpha = 0 ; 
-    currBeta = 0;      
-    currZoom = defaultZoom;                        
-    md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view      
-          }             
-
-    }
-    mediaType = MediaType::NONE;
-    }
-}
-
-void Car6view::readFarme()
-{
-
-}
-
-void Car6view::takingPictures()
-{
-
-}
-
-
-void Car6view::closeCamara()
-{
-
-}
-
 void Car6view::freeMemory()
 {
     cout << "free memory" << endl;
@@ -410,6 +291,7 @@ void Car6view::freeMemory()
         mapY[i].release();
     }
 }
+
 Car6view::~Car6view()
 {
     freeMemory();
@@ -434,10 +316,8 @@ void Panorama::Show() {
     MediaType mediaType = MediaType::IMAGE_FILE;
     double w = image_input.cols;
     double h = image_input.rows;
-
     mapX[0] = Mat(h, w, CV_32F);
     mapY[0] = Mat(h, w, CV_32F);
-
     Mat image_result(h, w, CV_32F);
     Mat image_resultv(w, h, CV_32F);
     m_ratio = w / calibrationWidth;
@@ -483,9 +363,6 @@ void Panorama::Show() {
     while(1){
          c = waitKey( 100 );
          if(c == 27) break;
-         if(c == 'c') {
-            openCamara();
-         }
     }
     cvDestroyWindow("image_input");
     image_result.release();
@@ -505,8 +382,6 @@ void Panorama::DisplayCh(int ch)
         case 0:
             remap(image_input, image_result, mapX[0], mapY[0], INTER_CUBIC, BORDER_CONSTANT, Scalar(0, 0, 0));
             cv::resize(image_result, image_display[0], Size(width_split*3,height_split*2));
-            if(( mediaType == MediaType::CAMERA ) && USE_PICAMERA)
-                cvtColor(image_display[0], image_display[0], CV_BGR2RGB);
             imshow("Panorama", image_display[0]);
             moveWindow("Panorama", x_base, y_base);
             break;
@@ -571,104 +446,6 @@ Mat Panorama::MatRead(const string& filename)
     fs.read((char*)mat.data, CV_ELEM_SIZE(type) * rows * cols);
 
     return mat;
-}
-
-
-void Panorama::camButtonClicked()
-{
-
-}
-
-void Panorama::openCamara()
-{
-    char c;
-    cap0.open(0);
-    cap0.set(CV_CAP_PROP_FRAME_WIDTH,2592);
-    cap0.set(CV_CAP_PROP_FRAME_HEIGHT,1944);
-
-    if ( cap0.isOpened() ) {
-        mediaType = MediaType::CAMERA;
-        currCh = 0;
-    for(;;)
-    {
-    // Mat frame;
-    cap0 >> image_input;
-
-    if (( image_input.cols != fix_width ) || ( image_input.rows != fix_height ))
-    cv::resize(image_input, image_input, Size(fix_width, fix_height));
-
-
-          if( image_input.empty() ) break; // end of video stream
-          DisplayCh(currCh);
-          c = waitKey(33);
-          // if (c!=-1) cout << "(" << (int)c << ")";
-
-          if( c == 27 ) break; // stop capturing by pressing ESC
-          else if ((c >= '0' ) && (c <='8')) {
-              currCh = (int)c -int('0');
-          }
-          else if (((int)c == 82) && (currCh == 2)) { // up
-     if ( currAlpha + currInc <= 90 )
-        currAlpha = currAlpha + currInc ;
-    else
-        currAlpha = 90 ;
-        md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view
-          }
-          else if (((int)c == 84) && (currCh == 2)) { // Down
-    if ( currAlpha - currInc >= -90 )
-        currAlpha = currAlpha - currInc ;
-    else
-        currAlpha = -90 ;
-        md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view
-          }
-          else if (((int)c == 81) && (currCh == 2)) { // left
-    if( currBeta - currInc >= 0 )
-        currBeta = currBeta - currInc ;
-    else
-        currBeta = ( currBeta - currInc ) + 360 ;
-        md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view
-          }
-          else if (((int)c == 83) && (currCh == 2)) { // right
-    currBeta = ( currBeta + currInc ) % 360 ;
-    if (currBeta < 0) currBeta += 360;
-    md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view
-          }
-          else if (((int)c == 43) && (currCh == 2)) { // +
-    currZoom += 1;
-    if (currZoom > maxZoom) currZoom = maxZoom;
-    md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view
-          }
-          else if (((int)c == 45) && (currCh == 2)) { // -
-    currZoom -= 1;
-    if (currZoom < minZoom) currZoom = minZoom;
-    md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view
-          }
-          else if (((c == 'r')||(c == 'R')) && (currCh == 2)) { // R : Reset
-    currAlpha = 0 ;
-    currBeta = 0;
-    currZoom = defaultZoom;
-    md->fastAnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, currAlpha, currBeta, currZoom, m_ratio);       // front view
-          }
-
-    }
-    mediaType = MediaType::NONE;
-    }
-}
-
-void Panorama::readFarme()
-{
-
-}
-
-void Panorama::takingPictures()
-{
-
-}
-
-
-void Panorama::closeCamara()
-{
-
 }
 
 void Panorama::freeMemory()

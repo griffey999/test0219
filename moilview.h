@@ -33,8 +33,8 @@ private:
 
     Moildev *md ;
     Mat image_input, image_input_s;
-    Mat image_display[7];
-    Mat mapX[7], mapY[7];
+    Mat image_display[6];
+    Mat mapX[6], mapY[6];
     double m_ratio;
     int x_base = 80;
     int y_base = 30;
@@ -55,16 +55,6 @@ private:
 
     enum class MediaType {NONE, IMAGE_FILE, CAMERA, VIDEO_FILE };
     MediaType mediaType = MediaType::NONE;
-
-    void camButtonClicked();
-
-    void openCamara();
-    void readFarme();
-    void closeCamara();
-    void takingPictures();
-    VideoCapture cap0;
-
-    bool CaptureState = false;
 
     void DisplayCh(int Ch);
     void Rotate(Mat& src, Mat& dst, double angle);
@@ -87,8 +77,8 @@ private:
 
     Moildev *md ;
     Mat image_input, image_input_s;
-    Mat image_display[7];
-    Mat mapX[7], mapY[7];
+    Mat image_display[0];
+    Mat mapX[1], mapY[1];
     double m_ratio;
     int x_base = 80;
     int y_base = 30;
@@ -109,17 +99,6 @@ private:
 
     enum class MediaType {NONE, IMAGE_FILE, CAMERA, VIDEO_FILE };
     MediaType mediaType = MediaType::NONE;
-
-    void camButtonClicked();
-
-    void openCamara();
-    void readFarme();
-    void closeCamara();
-    void takingPictures();
-    VideoCapture cap0;
-
-    bool CaptureState = false;
-
     void DisplayCh(int Ch);
     void Rotate(Mat& src, Mat& dst, double angle);
     void MatWrite(const string& filename, const Mat& mat);
