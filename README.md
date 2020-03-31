@@ -77,6 +77,23 @@ The function is in MOIL SDK. It is to generate a pair of X-Y Maps for the specif
 ```
 md->AnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, 0, 0, 4, m_ratio);       // front view
 ```
+5.4 Panorama
+```
+C++ : double PanoramaM(float *mapX, float *mapY, int w, int h, double magnification, double alpha_max);
+
+Parameters : 
+
+. mapX : memory pointer of result X-Map   
+. mapY : memory pointer of result Y-Map
+. w : width of the Map (both mapX and mapY)
+. h : height of the Map (both mapX and mapY)
+. manification : input image width / calibrationWidth, where calibrationWidth can get by calling getImageWidth(), manification is normally equal to 1.  
+. alpha_max : max of alpha. The recommended vaule is half of camera FOV. For example, use 90 for a 180 degree fisheye images and use 110 for a 220 degree fisheye images.
+```
+The function is in MOIL SDK. It is to generate a pair of X-Y Maps for Panorama image. The result X-Y Maps can be used later to remap the original fisheye image to the final image. you could also find the sample code in "main.cpp" as below:
+```
+md->PanoramaM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, m_ratio, 110);   // panorama
+```
 -----------------------------------------------------------------------------------------------------------------------------
 
 6. Build abd Run
