@@ -299,16 +299,43 @@ void Panorama::Show() {
 
 //cout << "test" << endl;
 //return ;
-
+/*
     md->Config("car", 1.4, 1.4,
         1320.0, 1017.0, 1.048,
         2592, 1944, 4.05,
         0, 0, 0, 0, -47.96, 222.86
         );
+*/
+    md->Config("Pano", 1.14, 1.69,
+        950.0, 744.0, 1.48,
+        1920, 1440, 3.00,
+        0, 0, 0, -15.92, 31.34, 140.48
+        );
+/*
+    {
+      "cameraName": "socionextCx3_main",
+      "cameraSensorWidth": 1.14,
+      "cameraSensorHeight": 1.69,
+      "iCx": 950.0,
+      "iCy": 744.0,
+      "ratio": 1.48,
+      "imageWidth": 1920.0,
+      "imageHeight": 1440.0,
+      "calibrationRatio": 3.0,
+      "parameter0": 0,
+      "parameter1": 0,
+      "parameter2": 0,
+      "parameter3": -15.921,
+      "parameter4":  31.337,
+      "parameter5": 140.48
+    }
+*/
+
+
     double calibrationWidth = md->getImageWidth();
     double iCy = md->getiCy();
     ConfigData *cd = md->getcd();
-    image_input = imread( "image.jpg", IMREAD_COLOR);
+    image_input = imread( "image2.png", IMREAD_COLOR);
     MediaType mediaType = MediaType::IMAGE_FILE;
     double w = image_input.cols;
     double h = image_input.rows;
@@ -338,7 +365,7 @@ void Panorama::Show() {
             mapY[0] = MatRead(str_y);
         }
         else {
-            md->PanoramaM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, m_ratio, 110 );   // panorama
+            md->PanoramaM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, m_ratio, 90 );   // panorama
             int i =6;
             sprintf(str_x, "matX%d", i);sprintf(str_y, "matY%d", i);
             MatWrite(str_x,mapX[0]);
