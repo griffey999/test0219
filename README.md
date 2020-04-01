@@ -94,7 +94,7 @@ Parameters :
 The function is in MOIL SDK. It is to generate a pair of X-Y Maps for Panorama image. The result X-Y Maps can be used later to remap the original fisheye image to the final image. you could also find the sample code in "main.cpp" as below(We change the parameter config because we use another 185 fisheye to do the demo):
 ```
 md->Config("Pano", 1.14, 1.69,950.0, 744.0, 1.48,1920, 1440, 3.00, 0, 0, 0, -15.92, 31.34, 140.48 );
-md->PanoramaM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, m_ratio, 110);   // panorama
+md->PanoramaM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, m_ratio, 90);   // panorama
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
