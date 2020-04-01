@@ -31,9 +31,10 @@ sudo apt install libopencv-dev python-opencv
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
-3. Sample Image (image.jpg)
+3. Sample Image (image.jpg,image2.png)
 ```
-A fisheye 180 degree image . To simulate car rear view and accordingly to output six view angle scenes .
+image.jpg :A fisheye 220 degree image . To simulate car rear view and accordingly to output six view angle scenes .
+image2.png :A fisheye 185 degree image . To demo and output panorama view.
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -55,7 +56,7 @@ By default, MAP_CACHE_ENABLED is set as true for system performance consideratio
 ```
 md->Config("car", 1.4, 1.4,1320.0, 1017.0, 1.048, 2592, 1944, 4.05, 0, 0, 0, 0, -47.96, 222.86 );
 ```
-This is to config the fisheye calibrated parameters at initial stage. Each fisheye camera can be calibrated and derives a set of parameters by MOIL laboratory, the configuration is necessary in the beginning of program.
+This is to config the fisheye calibrated parameters at initial stage. Each fisheye camera can be calibrated and derives a set of parameters by MOIL laboratory, the configuration is necessary in the beginning of program. (The example parameters is for dedicated 220 degree fisheye lens.)
     
 5.3 AnypointM
 ```
@@ -90,8 +91,9 @@ Parameters :
 . manification : input image width / calibrationWidth, where calibrationWidth can get by calling getImageWidth(), manification is normally equal to 1.  
 . alpha_max : max of alpha. The recommended vaule is half of camera FOV. For example, use 90 for a 180 degree fisheye images and use 110 for a 220 degree fisheye images.
 ```
-The function is in MOIL SDK. It is to generate a pair of X-Y Maps for Panorama image. The result X-Y Maps can be used later to remap the original fisheye image to the final image. you could also find the sample code in "main.cpp" as below:
+The function is in MOIL SDK. It is to generate a pair of X-Y Maps for Panorama image. The result X-Y Maps can be used later to remap the original fisheye image to the final image. you could also find the sample code in "main.cpp" as below(We change the parameter config because we use another 185 fisheye to do the demo):
 ```
+md->Config("Pano", 1.14, 1.69,950.0, 744.0, 1.48,1920, 1440, 3.00, 0, 0, 0, -15.92, 31.34, 140.48 );
 md->PanoramaM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, m_ratio, 110);   // panorama
 ```
 -----------------------------------------------------------------------------------------------------------------------------
