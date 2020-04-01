@@ -41,15 +41,7 @@ private:
     int fix_width = 2592;
     int fix_height = 1944;
     int currCh = 0, prevCh = 0;
-    int currPara = 0;
-    int currAlpha = 0;
-    int currBeta = 0;
-    int currInc = 10;    
-    double currZoom = 4;
-    double defaultZoom = 4;
 
-    const double minZoom = 1;
-    const double maxZoom = 12;
     int width_split = (1920-100)/3 ;
     int height_split = width_split*3/4 ;
 
@@ -85,22 +77,13 @@ private:
     int fix_width = 2592;
     int fix_height = 1944;
     int currCh = 0, prevCh = 0;
-    int currPara = 0;
-    int currAlpha = 0;
-    int currBeta = 0;
-    int currInc = 10;
-    double currZoom = 4;
-    double defaultZoom = 4;
 
-    const double minZoom = 1;
-    const double maxZoom = 12;
     int width_split = (1920-100)/3 ;
     int height_split = width_split*3/4 ;
 
     enum class MediaType {NONE, IMAGE_FILE, CAMERA, VIDEO_FILE };
     MediaType mediaType = MediaType::NONE;
     void DisplayCh(int Ch);
-    void Rotate(Mat& src, Mat& dst, double angle);
     void MatWrite(const string& filename, const Mat& mat);
     Mat MatRead(const string& filename);
     void freeMemory();
