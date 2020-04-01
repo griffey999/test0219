@@ -1,7 +1,7 @@
 MOIL SDK description
 ============================================================================================================================
 
-MOIL SDK is collection of functions support c++ developments for fisheye image applications, tested both on ubuntu 18.04 and Raspberry Pi( Raspbian Buster ), gcc/g++ and OpenCV are required in the development. Following examples are on ubuntu 18.04 .One of MOIL's core technology is to calibrate a fisheye lens no matter the fisheye lens is cheap(Not well-made) or expensive(Well-made). After calibrating , MOIL will have a set of fisheye parameters and based on it to implement the fisheye image with the SDK functions. (Warning : Changing the parameters or image will lead to uncertain output. )
+MOIL SDK is collection of functions support c++ developments for fisheye image applications, tested both on ubuntu 18.04 and Raspberry Pi( Raspbian Buster ), gcc/g++ and OpenCV are required in the development. Following examples are on ubuntu 18.04 . One of MOIL's core technology is to calibrate a fisheye lens no matter the fisheye lens is cheap(Not well-made) or expensive(Well-made). After calibrating , MOIL will have a set of fisheye parameters and based on it to implement the fisheye image with the SDK functions. (Warning : Changing the parameters or image will lead to uncertain output. )
 
 ![](https://user-images.githubusercontent.com/3524867/73999970-65850480-49a1-11ea-9e0b-6b88d1d49fb7.jpg)
 ![](https://user-images.githubusercontent.com/3524867/74001393-61a7b100-49a6-11ea-96a0-112dbdeb7b05.jpg)
@@ -43,7 +43,7 @@ main.cpp
 ```
 -----------------------------------------------------------------------------------------------------------------------------
 
-5.API Reference
+5. API Reference
 
 5.1 Disk Cache
 ```
@@ -70,13 +70,31 @@ Parameters :
 . h : height of the Map (both mapX and mapY)
 . alphaOffset : alpha offset 
 . betaOffset : beta offset
-. zoom : decimal zoom factor, normally 1..12
+. zoom : zoom factor 
 . manification : input image width / calibrationWidth, where calibrationWidth can get by calling getImageWidth(), manification is normally equal to 1. 
 ```
 The function is in MOIL SDK. It is to generate a pair of X-Y Maps for the specified alpha, beta and zoom parameters, the result X-Y Maps can be used later to remap the original fisheye image to the target angle image. you could also find the sample code in "main.cpp" as below:
 ```
 md->AnyPointM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, 0, 0, 4, m_ratio);       // front view
 ```
+5.4 Panorama
+```
+C++ : double PanoramaM(float *mapX, float *mapY, int w, int h, double magnification, double alpha_max);
+
+Parameters : 
+
+. mapX : memory pointer of result X-Map   
+. mapY : memory pointer of result Y-Map
+. w : width of the Map (both mapX and mapY)
+. h : height of the Map (both mapX and mapY)
+. manification : input image width / calibrationWidth, where calibrationWidth can get by calling getImageWidth(), manification is normally equal to 1.  
+. alpha_max : max of alpha. The recommended vaule is half of camera FOV. For example, use 90 for a 180 degree fisheye images and use 110 for a 220 degree fisheye images.
+```
+The function is in MOIL SDK. It is to generate a pair of X-Y Maps for Panorama image. The result X-Y Maps can be used later to remap the original fisheye image to the final image. you could also find the sample code in "main.cpp" as below:
+```
+md->PanoramaM((float *)mapX[0].data, (float *)mapY[0].data, mapX[0].cols, mapX[0].rows, m_ratio, 110);   // panorama
+```
+-----------------------------------------------------------------------------------------------------------------------------
 
 6. Build abd Run
 ```
